@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas drawing</title>
+</head>
+<body>
+  <!-- <canvas id="canvas" width="1500" height="800" ></canvas> -->
+  <canvas id="canvas" width="1540" height="900"></canvas>
+
+<style>
+  body{
+    margin: 0px;
+    overflow: hidden;
+  }
+</style>
+
+<script>
+  const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+// Array to store coordinates of squares
+const squares = [];
+
+// Draw function to draw the squares
+function draw() {
+  for (let i = 0; i < 25; i++) {
+    for (let j = 0; j < 31; j++) {
+      const x = j * 50;
+      const y = i * 50;
+      squares.push({ x: x, y: y, size: 50, checked: false});
+      ctx.save();
+      // Colorful squares
+      // ctx.fillStyle = `rgb(${5 * i}, ${10 * i}, ${15 * i})`;
+      // White Squares
+      // ctx.fillStyle = 'rgb()';
+      ctx.translate(j * 50, i * 50);
+      ctx.fillRect(0, 0, 50, 50);
+      ctx.restore();
+    }
+  }
+}
+
+draw();
+
+canvas.addEventListener("click", e => {
+  const rect = canvas.getBoundingClientRect();
+  const mouseX = e.clientX - rect.left;
+  const mouseY = e.clientY - rect.top;
+
+  for (let i = 0; i < squares.length; i++) {
+    const square = squares[i];
+    if (
+      mouseX >= square.x &&
+      mouseX <= square.x + square.size &&
+      mouseY >= square.y &&
+      mouseY <= square.y + square.size &&
+      square.checked == false
+    ) {
+      // Apply CSS styles to the specific square
+      canvas.style.cursor = "pointer";
+      ctx.fillStyle = "white";
+      ctx.fillRect(square.x, square.y, square.size, square.size);
+      square.checked = true
+    } else if (mouseX >= square.x &&
+      mouseX <= square.x + square.size &&
+      mouseY >= square.y &&
+      mouseY <= square.y + square.size &&
+      square.checked == true
+    ) {
+      canvas.style.cursor = "default";
+      // Colorful squares
+      /* ctx.fillStyle = `rgb(${5 * (square.y / 50)}, ${
+        10 * (square.y / 50)
+      }, ${15 * (square.y / 50)})`; */
+      // Whites squares
+      ctx.fillStyle = 'rgb(0,0,0)'
+      ctx.fillRect(square.x, square.y, square.size, square.size);
+      square.checked = false
+    }
+  }
+});
+
+</script>
+
+</body>
+</html>

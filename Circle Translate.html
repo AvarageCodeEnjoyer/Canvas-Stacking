@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Circle Translate</title>
+</head>
+<body>
+<canvas id="canvas" width="1000" height="700"></canvas>
+<script>
+  const canvas = document.getElementById("canvas");
+  const ctx = canvas.getContext("2d");
+
+  function draw() {
+    ctx.beginPath();
+    ctx.fillStyle = 'black';
+    ctx.arc(100, 100, 50, 0, 2 * Math.PI)
+    ctx.save()
+    ctx.fillStyle = 'green';
+    ctx.translate(100,100)
+    ctx.arc(100, 100, 50, 0, 2 * Math.PI)
+    ctx.fill();
+  }
+
+  for(let i = 0; i < 3; i++){
+    ctx.save()
+    ctx.fillStyle = 'black'
+    ctx.translate()
+    ctx.restore()
+  }
+
+  draw();
+</script>
+
+</body>
+</html>
