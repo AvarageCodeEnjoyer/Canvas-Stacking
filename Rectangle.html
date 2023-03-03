@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="canvas" width="1500" height="800"></canvas>
+  <script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+
+    function draw(){
+      
+      // Black Square
+      ctx.beginPath()
+      ctx.fillStyle = 'black'
+      ctx.fillRect(100,100,100,100)
+      
+      // Blue Circle
+      ctx.beginPath()
+      ctx.fillStyle = 'blue'
+      ctx.arc(150,150,50,0, 2* Math.PI)
+      ctx.fill()
+      
+      // Green Lines
+      ctx.beginPath()
+      ctx.strokeStyle = 'green'
+      ctx.lineWidth = 10
+      ctx.moveTo(100,100)
+      ctx.lineTo(200,200)
+      ctx.stroke()
+      ctx.save()
+      
+      // 3 Squares
+      ctx.beginPath()
+      ctx.fillStyle = 'black'
+      ctx.fillRect(200, 200, 100, 100)
+      ctx.translate(200,0)
+      ctx.fillRect(200, 200, 100, 100)
+      ctx.translate(0,200)
+      ctx.fillRect(200, 200, 100, 100)
+      ctx.restore()
+
+      // Orange Square
+      ctx.save()
+      ctx.beginPath()
+      ctx.fillStyle = 'orange'
+      ctx.rotate(Math.PI / 4)
+      ctx.fillRect(700, 300, 200, 200)
+      ctx.fill()
+      ctx.restore()
+      
+      ctx.save()
+      ctx.beginPath()
+      ctx.fillStyle = 'black'
+      ctx.translate(600,200)
+      ctx.fillStyle = 'red'
+      ctx.fillRect(600,100,100,100)
+      ctx.rotate(Math.PI / 4)
+      ctx.fillStyle = 'blue'
+      ctx.fillRect(440,-320,100,100)
+      ctx.restore()
+      
+
+      ctx.beginPath()
+      ctx.moveTo(500, 600)
+      ctx.fillStyle = 'yellow'
+      ctx.arc(100, 100, 75,0,2*Math.PI)
+      ctx.fill()
+      ctx.beginPath()
+      ctx.fillStyle = 'black'
+      ctx.arc(0, 0, 10, 0, 2*Math.PI)
+      ctx.arc(0, 0, 10, 0, 2*Math.PI)
+      ctx.fill()
+
+   }
+
+    draw()
+  </script>
+</body>
+</html>

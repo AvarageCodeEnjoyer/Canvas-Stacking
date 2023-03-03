@@ -7,28 +7,26 @@
   <title>Circle Translate</title>
 </head>
 <body>
-<canvas id="canvas" width="1000" height="700"></canvas>
+<canvas id="canvas" width="1500" height="800"></canvas>
 <script>
   const canvas = document.getElementById("canvas");
   const ctx = canvas.getContext("2d");
 
   function draw() {
-    ctx.beginPath();
-    ctx.fillStyle = 'black';
-    ctx.arc(100, 100, 50, 0, 2 * Math.PI)
-    ctx.save()
-    ctx.fillStyle = 'green';
-    ctx.translate(100,100)
-    ctx.arc(100, 100, 50, 0, 2 * Math.PI)
-    ctx.fill();
+    for(let i = 0; i < 8; i++){
+      for(let j = 0; j < 15; j++){
+        ctx.beginPath()
+        ctx.save()
+        ctx.fillStyle = `rgb(${20 + i * 10}, ${10 + j * 10}, ${50 + i * 10})`
+        ctx.translate(100 * j,100 * i)
+        ctx.arc(50, 50, 50, 0, 2 * Math.PI)
+        ctx.fill()
+        ctx.restore()
+      }
+    }
   }
 
-  for(let i = 0; i < 3; i++){
-    ctx.save()
-    ctx.fillStyle = 'black'
-    ctx.translate()
-    ctx.restore()
-  }
+
 
   draw();
 </script>

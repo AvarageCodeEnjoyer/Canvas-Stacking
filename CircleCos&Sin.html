@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+  <canvas id="canvas" width="1500" height="800"></canvas>
+
+<body>
+  <script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+  
+    function draw() {
+      for(let i = 0; i < 8; i++){
+        for(let j = 0; j < 15; j++){
+          let R = Math.floor(Math.random() * 255)
+          let G = Math.floor(Math.random() * 255)
+          let B = Math.floor(Math.random() * 255)
+          ctx.beginPath()
+          ctx.save()
+          ctx.fillStyle = `rgb(${R}, ${G}, ${ B})`
+          ctx.translate(100 * j,100 * i)
+          ctx.arc(50, 50, 50, 0, 2 * Math.PI)
+          ctx.fill()
+          ctx.restore()
+        }
+      }
+    }
+  
+  
+  setInterval(() => {
+    draw();
+  }, 1000);
+
+  draw()
+  </script>
+</body>
+</html>
